@@ -14,6 +14,8 @@ class Controller {
     this.todoContainerSelector = todoContainerSelector;
     this.getForm();
     this.getTodoContainer();
+    this.#view.resetForm();
+
 
     this.form.addEventListener('submit', this.#handleForm)
   }
@@ -21,7 +23,7 @@ class Controller {
   #handleForm = e => {
     e.preventDefault();
     e.stopPropagation();
-
+    this.validationFormElements();
     const data = {};
     this.form.querySelectorAll('input, textarea')
       .forEach(item => {
@@ -42,6 +44,16 @@ class Controller {
     if (!(form instanceof HTMLFormElement)) throw new Error('Form should be a HTML Form Element.');
     this.form = form;
     this.#view.setForm(form);
+  }
+
+  validationFormElements(){
+    this.form.querySelectorAll('input, textarea')
+      .forEach(item => {
+        if (item.value.trim().length < 10){
+          // throw new Error('your set is too short.')
+        }
+
+      })
   }
 
   #setModel(modelInstance) {

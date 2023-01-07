@@ -28,4 +28,8 @@ class View{
     if (this.#form) throw new Error('Ypu cannot redeclare form.')
     this.#form = htmlElement;
   }
+
+  resetForm(){
+    this.#form.reset()
+  }
 }
